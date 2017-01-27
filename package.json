@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "surge --domain traffic-lights.surge.sh/"
+    "deploy": "surge ./ --domain traffic-lights.surge.sh/"
   },
   "repository": {
     "type": "git",
