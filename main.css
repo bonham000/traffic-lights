@@ -19,7 +19,22 @@ body {
 	font-size: 12px;
 	color: rgb(225,225,225);
 }
+
 #info:hover {
+	color: white;
+	cursor: pointer;
+}
+
+#crash-btn {
+	position: absolute;
+	top: -5px;
+	right: 6px;
+	z-index: 2;
+	font-size: 12px;
+	color: rgb(225,225,225);
+}
+
+#crash-btn:hover {
 	color: white;
 	cursor: pointer;
 }
@@ -66,16 +81,6 @@ h1 {
 	border-radius: 50%;
 	border: 7px solid rgb(50,50,50);
 }
-
-/*.red {
-	background: red;
-}
-.yellow {
-	background: yellow;
-}
-.green, .left {
-	background: rgb(14,208,103);
-}*/
 
 .controls {
 	display: flex;

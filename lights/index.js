@@ -58,6 +58,16 @@ class StreetLights {
 		this.lightTwo.red.style.background = red;
 		this.state = 'red';
 	}
+	alarm() {
+		this.clearAll();
+		this.stopTraffic();
+		setInterval(() => {
+			this.clearAll();
+			setTimeout(() => {
+				this.stopTraffic();
+			}, 500);
+		}, 1000);
+	}
 	getState() {
 		return this.state;
 	}
@@ -130,6 +140,11 @@ class Intersection {
 			this.goLeft(this.streetTwo, this.streetOne);
 		}
 	}
+	emergency() {
+		this.changing = true;
+		this.streetOne.alarm();
+		this.streetTwo.alarm();
+	}
 }
 
 var streetOne = new StreetLights(c_north, c_south);
@@ -150,6 +165,9 @@ function handleClick(direction) {
 			break;
 		case 'street-two-left':
 			block.streetTwoLeft();
+			break;
+		case 'emergency':
+			block.emergency();
 			break;
 	}
 }
