@@ -108,6 +108,8 @@ class Intersection {
 				streetTwo.startTraffic();
 				this.inTransition = false;
 			}, 1800);
+		} else {
+			this.inTransition = false;
 		}
 	}
 	streetOneGo() {
