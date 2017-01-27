@@ -35,7 +35,7 @@ body {
 
 h1 {
 	background: rgb(0,117,75);
-	padding: 15px;
+	padding: 10px;
 	width: 300px;
 	margin: auto;
 	color: white;
@@ -45,7 +45,7 @@ h1 {
 }
 
 .light-container {
-	margin: 20px auto;
+	margin: 12px auto;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -53,15 +53,15 @@ h1 {
 
 .light {
 	width: 160px;
-	height: 450px;
+	height: 500px;
 	border: 35px solid rgb(40,40,40);
 	border-radius: 15px;
 	background: rgb(250, 190,10);
 }
 
 .circle {
-	width: 125px;
-	height: 125px;
+	width: 100px;
+	height: 100px;
 	margin: 8px auto;
 	border-radius: 50%;
 	border: 7px solid rgb(50,50,50);
@@ -73,7 +73,7 @@ h1 {
 .yellow {
 	background: yellow;
 }
-.green {
+.green, .left {
 	background: rgb(14,208,103);
 }
 
@@ -91,6 +91,7 @@ button {
 	width: 215px;
 	margin: 5px auto;
 	font-size: 20px;
+	font-family: 'sans-serif';
 	padding: 8px;
 	border-radius: 2px;
 	border: none;
