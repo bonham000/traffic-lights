@@ -27,37 +27,39 @@ class StreetLights {
 		}
 		this.lightOne = initializeLight(lightOne);
 		this.lightTwo = initializeLight(lightTwo);
+		this.state = 'red';
 	}
 	clearAll() {
-		for (var color in this.lightOne) {
-			this.lightOne[color].style.background = dark;
-		}
-		for (var color in this.lightTwo) {
-			this.lightTwo[color].style.background = dark;
-		}
+		for (var color in this.lightOne) this.lightOne[color].style.background = dark;
+		for (var color in this.lightTwo) this.lightTwo[color].style.background = dark;
 	}
 	transition() {
 		setTimeout(() => {
 			this.clearAll();
 			this.lightOne.yellow.style.background = yellow;
 			this.lightTwo.yellow.style.background = yellow;
-		}, 500);
+		}, 300);
 	}
 	startTraffic() {
 		this.clearAll();
 		this.lightOne.green.style.background = green;
 		this.lightTwo.green.style.background = green;
+		this.state = 'green';
 	}
 	turnLeft() {
 		this.clearAll();
-		console.log('turning left')
 		this.lightOne.left.style.background = green;
 		this.lightTwo.left.style.background = green;
+		this.state = 'left';
 	}
 	stopTraffic() {
 		this.clearAll();
 		this.lightOne.red.style.background = red;
 		this.lightTwo.red.style.background = red;
+		this.state = 'red';
+	}
+	getState() {
+		return this.state;
 	}
 }
 
@@ -65,26 +67,68 @@ class StreetLights {
 class Intersection {
 	constructor(streetOne, streetTwo) {
 		this.streetOne = streetOne;
+		this.streetOne.clearAll();
+		this.streetOne.startTraffic();
 		this.streetTwo = streetTwo;
+		this.streetTwo.clearAll();
+		this.streetTwo.stopTraffic();
+		this.changing = false;
+	}
+	goStraight(streetOne, streetTwo) {
+		if (streetOne.getState() === 'green') {
+			streetOne.transition();
+			setTimeout(() => {
+				streetOne.stopTraffic();
+				streetTwo.startTraffic();
+				this.changing = false;
+			}, 1800);
+		} else if (streetTwo.getState() === 'left') {
+			streetTwo.transition();
+			setTimeout(() => {
+				streetTwo.startTraffic();
+				this.changing = false;
+			}, 1800);
+		}
 	}
 	streetOneGo() {
-		this.streetOne.transition();
-		setTimeout(() => {
-			this.streetOne.startTraffic();
-			this.streetTwo.stopTraffic();
-		}, 3000);
-	}
-	streetOneLeft() {
-		this.streetOne.turnLeft();
-		this.streetTwo.stopTraffic();
+		if (!this.changing) {
+			this.changing = true;
+			this.goStraight(this.streetTwo, this.streetOne);
+		}
 	}
 	streetTwoGo() {
-		this.streetOne.stopTraffic();
-		this.streetTwo.startTraffic();
+		if (!this.changing) {
+			this.changing = true;
+			this.goStraight(this.streetOne, this.streetTwo);
+		}
+	}
+	goLeft(streetOne, streetTwo) {
+		if (streetTwo.getState() === 'green') {
+			streetTwo.transition();
+			setTimeout(() => {
+				streetOne.turnLeft();
+				streetTwo.stopTraffic();
+				this.changing = false;
+			}, 1800);
+		} else if (streetOne.getState() === 'green') {
+			streetOne.transition();
+			setTimeout(() => {
+				streetOne.turnLeft();
+				this.changing = false;
+			}, 1800);
+		}
+	}
+	streetOneLeft() {
+		if (!this.changing) {
+			this.changing = true;
+			this.goLeft(this.streetOne, this.streetTwo);
+		}
 	}
 	streetTwoLeft() {
-		this.streetOne.stopTraffic();
-		this.streetTwo.turnLeft();	
+		if (!this.changing) {
+			this.changing = true;
+			this.goLeft(this.streetTwo, this.streetOne);
+		}
 	}
 }
 
@@ -110,8 +154,6 @@ function handleClick(direction) {
 	}
 }
 
-// initialize intersection
-block.streetOneGo();
 
 
 

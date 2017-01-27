@@ -67,7 +67,7 @@ h1 {
 	border: 7px solid rgb(50,50,50);
 }
 
-.red {
+/*.red {
 	background: red;
 }
 .yellow {
@@ -75,7 +75,7 @@ h1 {
 }
 .green, .left {
 	background: rgb(14,208,103);
-}
+}*/
 
 .controls {
 	display: flex;
