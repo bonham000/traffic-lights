@@ -76,72 +76,73 @@ class StreetLights {
 // define intersection class
 class Intersection {
 	constructor(streetOne, streetTwo) {
+		// initialize intersection and set one pair of lights to be green:
 		this.streetOne = streetOne;
 		this.streetOne.clearAll();
 		this.streetOne.startTraffic();
 		this.streetTwo = streetTwo;
 		this.streetTwo.clearAll();
 		this.streetTwo.stopTraffic();
-		this.changing = false;
+		this.inTransition = false;
 	}
 	goStraight(streetOne, streetTwo) {
-		if (streetOne.getState() === 'green') {
+		if (streetOne.getState() !== 'red') {
 			streetOne.transition();
 			setTimeout(() => {
 				streetOne.stopTraffic();
 				streetTwo.startTraffic();
-				this.changing = false;
+				this.inTransition = false;
 			}, 1800);
 		} else if (streetTwo.getState() === 'left') {
 			streetTwo.transition();
 			setTimeout(() => {
 				streetTwo.startTraffic();
-				this.changing = false;
+				this.inTransition = false;
 			}, 1800);
 		}
 	}
 	streetOneGo() {
-		if (!this.changing) {
-			this.changing = true;
+		if (!this.inTransition) {
+			this.inTransition = true;
 			this.goStraight(this.streetTwo, this.streetOne);
 		}
 	}
 	streetTwoGo() {
-		if (!this.changing) {
-			this.changing = true;
+		if (!this.inTransition) {
+			this.inTransition = true;
 			this.goStraight(this.streetOne, this.streetTwo);
 		}
 	}
 	goLeft(streetOne, streetTwo) {
-		if (streetTwo.getState() === 'green') {
+		if (streetTwo.getState() !== 'red') {
 			streetTwo.transition();
 			setTimeout(() => {
 				streetOne.turnLeft();
 				streetTwo.stopTraffic();
-				this.changing = false;
+				this.inTransition = false;
 			}, 1800);
 		} else if (streetOne.getState() === 'green') {
 			streetOne.transition();
 			setTimeout(() => {
 				streetOne.turnLeft();
-				this.changing = false;
+				this.inTransition = false;
 			}, 1800);
 		}
 	}
 	streetOneLeft() {
-		if (!this.changing) {
-			this.changing = true;
+		if (!this.inTransition) {
+			this.inTransition = true;
 			this.goLeft(this.streetOne, this.streetTwo);
 		}
 	}
 	streetTwoLeft() {
-		if (!this.changing) {
-			this.changing = true;
+		if (!this.inTransition) {
+			this.inTransition = true;
 			this.goLeft(this.streetTwo, this.streetOne);
 		}
 	}
 	emergency() {
-		this.changing = true;
+		this.inTransition = true;
 		this.streetOne.alarm();
 		this.streetTwo.alarm();
 	}
@@ -152,6 +153,7 @@ var streetTwo = new StreetLights(s_east, s_west);
 
 var block = new Intersection(streetOne, streetTwo);
 
+// handle click events from client
 function handleClick(direction) {
 	switch(direction) {
 		case 'street-one-go':
@@ -172,6 +174,11 @@ function handleClick(direction) {
 	}
 }
 
+function showAbout() {
+	document.getElementById('about').style.display = 'block';
+}
 
-
+function closeAbout() {
+	document.getElementById('about').style.display = 'none';
+}
 

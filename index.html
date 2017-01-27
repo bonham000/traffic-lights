@@ -3,32 +3,48 @@
 	<head>
 		<title>Traffic Lights</title>
 		<link rel="stylesheet" href="/main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 	</head>
 	<body>
 		
 		<div class='app'>
 
-			<div id='info'>
-				<p>What is this</p>
+			<div id='about'>
+				<div class='about-content'>
+					<p>This page uses JavaScript to simulate the traffic light logic of a two-way intersection.</p>
+					<a target='_blank' href="https://github.com/bonham000/traffic-lights">Code</a><br><br>
+					<button onclick='closeAbout()'>Start Driving</button>
+				</div>
+			</div>
+
+			<div id='info' onclick='showAbout()'>
+				<p>What is this <i class="em em-red_car"></i></p>
 			</div>
 
 			<div class='half clementina'>
 				<div class='street-sign'>
-					<h1>Clementina Street</h1>	
+					<h1>Clementina Street</h1>
 				</div>
 
 				<div class='light-container'>
 					<div class='light' id='clementina-north'>
+						<p class='direction'>Clementina North Bound</p>
 						<div class='circle red'></div>
 						<div class='circle yellow'></div>
 						<div class='circle green'></div>
-						<div class='circle left'></div>
+						<div class='circle left'>
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</div>
 					</div>
 					<div class='light' id='clementina-south'>
+						<p class='direction'>Clementina South Bound</p>
 						<div class='circle red'></div>
 						<div class='circle yellow'></div>
 						<div class='circle green'></div>
-						<div class='circle left'></div>
+						<div class='circle left'>
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</div>
 					</div>
 				</div>
 
@@ -51,16 +67,22 @@
 
 				<div class='light-container'>
 					<div class='light' id='sumner-east'>
+						<p class='direction'>Sumner East Bound</p>
 						<div class='circle red'></div>
 						<div class='circle yellow'></div>
 						<div class='circle green'></div>
-						<div class='circle left'></div>
+						<div class='circle left'>
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</div>
 					</div>
 					<div class='light' id='sumner-west'>
+					<p class='direction'>Sumner West Bound</p>
 						<div class='circle red'></div>
 						<div class='circle yellow'></div>
 						<div class='circle green'></div>
-						<div class='circle left'></div>
+						<div class='circle left'>
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</div>
 					</div>
 				</div>
 

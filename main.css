@@ -2,7 +2,8 @@ body {
 	background: rgb(50,100,200);
 	color: white;
 	min-width: 1100px;
-	padding-top: 10px;
+	margin: 0;
+	padding: 0;
 }
 
 .app {
@@ -20,9 +21,42 @@ body {
 	color: rgb(225,225,225);
 }
 
+.em {
+	margin-left: 3px;
+	margin-bottom: 6px;
+	transform: rotateY(180deg);
+}
+
 #info:hover {
 	color: white;
 	cursor: pointer;
+}
+
+#about {
+	display: none;
+	position: absolute;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(25,25,25,0.95);
+	z-index: 5;
+	text-align: center;
+}
+
+.about-content {
+	padding-top: 125px;
+	font-family: sans-serif;
+	font-size: 28px;
+	color: #DEE5E5;
+}
+
+a, a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 #crash-btn {
@@ -40,12 +74,21 @@ body {
 }
 
 .half {
+	margin-top: 18px;
 	width: 550px;
 }
 
 .street-sign {
 	width: 550px;
 	text-align: center;
+}
+
+.direction {
+	position: absolute;
+	margin-top: -20px;
+	margin-left: 5px;
+	font-size: 15px;
+	color: rgb(125,125,125);
 }
 
 h1 {
@@ -80,6 +123,16 @@ h1 {
 	margin: 8px auto;
 	border-radius: 50%;
 	border: 7px solid rgb(50,50,50);
+}
+
+.left {
+	text-align: center;
+	font-size: 70px;
+	color: rgb(30,30,30);
+}
+
+.fa {
+	margin-top: 12px;
 }
 
 .controls {
