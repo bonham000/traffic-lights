@@ -1,3 +1,8 @@
+
+// toggle display for about panel
+var showAbout = () => about.style.display = 'inline';
+var closeAbout = () => about.style.display = 'none';
+
 // define light colors
 const dark = 'rgb(30,30,30)';
 const red = 'red';
@@ -114,6 +119,7 @@ class Intersection {
 		}
 	}
 	goLeft(streetOne, streetTwo) {
+		console.log('left');
 		if (streetTwo.getState() !== 'red') {
 			streetTwo.transition();
 			setTimeout(() => {
@@ -142,8 +148,7 @@ class Intersection {
 		}
 	}
 	emergency() {
-
-		if (!this.alarm) {
+		if (!this.alarm && !this.inTransition) {
 			this.inTransition = true;
 			this.streetOne.stopTraffic();
 			this.streetTwo.stopTraffic();
@@ -163,12 +168,12 @@ class Intersection {
 	}
 }
 
+// create instances of street lights and intersections
 var streetOne = new StreetLights(c_north, c_south);
 var streetTwo = new StreetLights(s_east, s_west);
-
 var block = new Intersection(streetOne, streetTwo);
 
-// handle click events from client
+// handle click events from page
 function handleClick(direction) {
 	switch(direction) {
 		case 'street-one-go':
@@ -189,11 +194,4 @@ function handleClick(direction) {
 	}
 }
 
-function showAbout() {
-	about.style.display = 'block';
-}
-
-function closeAbout() {
-	about.style.display = 'none';
-}
 
