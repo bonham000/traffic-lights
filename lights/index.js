@@ -4,11 +4,13 @@ const red = 'red';
 const yellow = 'yellow';
 const green = 'rgb(14,208,103)';
 
+const about = document.getElementById('about');
+
 // collect street references from DOM
-var c_north = document.getElementById('clementina-north');
-var c_south = document.getElementById('clementina-south');
-var s_east = document.getElementById('sumner-east');
-var s_west = document.getElementById('sumner-west');
+const c_north = document.getElementById('clementina-north');
+const c_south = document.getElementById('clementina-south');
+const s_east = document.getElementById('sumner-east');
+const s_west = document.getElementById('sumner-west');
 
 // define stree lights object
 class StreetLights {
@@ -61,12 +63,9 @@ class StreetLights {
 	alarm() {
 		this.clearAll();
 		this.stopTraffic();
-		setInterval(() => {
+		setTimeout(() => {
 			this.clearAll();
-			setTimeout(() => {
-				this.stopTraffic();
-			}, 500);
-		}, 1000);
+		}, 500);
 	}
 	getState() {
 		return this.state;
@@ -84,6 +83,7 @@ class Intersection {
 		this.streetTwo.clearAll();
 		this.streetTwo.stopTraffic();
 		this.inTransition = false;
+		this.alarm = null;	
 	}
 	goStraight(streetOne, streetTwo) {
 		if (streetOne.getState() !== 'red') {
@@ -142,9 +142,24 @@ class Intersection {
 		}
 	}
 	emergency() {
-		this.inTransition = true;
-		this.streetOne.alarm();
-		this.streetTwo.alarm();
+
+		if (!this.alarm) {
+			this.inTransition = true;
+			this.streetOne.stopTraffic();
+			this.streetTwo.stopTraffic();
+			this.alarm = setInterval(() => {
+				this.streetOne.alarm();
+				this.streetTwo.alarm();
+			}, 1000);
+			document.getElementById('crash-btn').innerHTML = 'Use magic to fix lights';
+		} else {
+			this.inTransition = false;
+			clearInterval(this.alarm);
+			this.alarm = null;
+			this.streetOne.startTraffic();
+			this.streetTwo.stopTraffic();
+			document.getElementById('crash-btn').innerHTML = 'Crash car into light post'
+		}
 	}
 }
 
@@ -175,10 +190,10 @@ function handleClick(direction) {
 }
 
 function showAbout() {
-	document.getElementById('about').style.display = 'block';
+	about.style.display = 'block';
 }
 
 function closeAbout() {
-	document.getElementById('about').style.display = 'none';
+	about.style.display = 'none';
 }
 
