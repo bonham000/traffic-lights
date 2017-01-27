@@ -44,23 +44,33 @@ body {
 }
 
 .about-content {
-	padding-top: 125px;
+	padding-top: 75px;
 	font-family: sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 34px;
 	width: 750px;
 	margin: auto;
 	color: #DEE5E5;
+	color: white;
+}
+
+.notes-header {
+	font-size: 24px;
+}
+
+.notes {
+	font-size: 20px;
 }
 
 a, a:visited {
 	font-size: 65px;
-	color: #DEE5E5;
+	color: white;
 	text-decoration: none;
 	margin: 0;
 }
 
 a:hover {
-	color: white;
+	color: rgb(14,208,103);
 }
 
 #crash-btn {
@@ -140,6 +150,7 @@ h1 {
 }
 
 .controls {
+	margin-bottom: 25px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -153,7 +164,7 @@ button {
 	width: 215px;
 	margin: 5px auto;
 	font-size: 20px;
-	font-family: 'sans-serif';
+	font-family: 'Raleway', sans-serif;
 	padding: 8px;
 	border-radius: 2px;
 	border: none;

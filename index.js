@@ -41,6 +41,8 @@ class StreetLights {
 	clearAll() {
 		for (var color in this.lightOne) this.lightOne[color].style.background = dark;
 		for (var color in this.lightTwo) this.lightTwo[color].style.background = dark;
+		this.lightOne.left.style.color = dark;
+		this.lightTwo.left.style.color = dark;
 	}
 	transition() {
 		setTimeout(() => {
@@ -57,8 +59,10 @@ class StreetLights {
 	}
 	turnLeft() {
 		this.clearAll();
-		this.lightOne.left.style.background = green;
-		this.lightTwo.left.style.background = green;
+		this.lightOne.left.style.background = dark;
+		this.lightOne.left.style.color = green;
+		this.lightTwo.left.style.background = dark;
+		this.lightTwo.left.style.color = green;
 		this.state = 'left';
 	}
 	stopTraffic() {
@@ -133,10 +137,14 @@ class Intersection {
 				streetOne.turnLeft();
 				this.inTransition = false;
 			}, 1800);
+		} else {
+			this.inTransition = false;
 		}
 	}
 	streetOneLeft() {
+		console.log('left');
 		if (!this.inTransition) {
+			console.log('here');
 			this.inTransition = true;
 			this.goLeft(this.streetOne, this.streetTwo);
 		}
