@@ -1,23 +1,22 @@
 
 // toggle display for about panel
+const about = document.getElementById('about');
 var showAbout = () => about.style.display = 'inline';
 var closeAbout = () => about.style.display = 'none';
 
-// define light colors
+// define colors for lights
 const dark = 'rgb(30,30,30)';
 const red = 'red';
 const yellow = 'yellow';
 const green = 'rgb(14,208,103)';
 
-const about = document.getElementById('about');
-
 // collect street references from DOM
 const c_north = document.getElementById('clementina-north');
 const c_south = document.getElementById('clementina-south');
-const s_east = document.getElementById('sumner-east');
-const s_west = document.getElementById('sumner-west');
+const s_east  = document.getElementById('sumner-east');
+const s_west  = document.getElementById('sumner-west');
 
-// define stree lights object
+// define street lights object
 class StreetLights {
 	constructor(lightOne, lightTwo) {
 		function initializeLight(light) {
@@ -35,6 +34,9 @@ class StreetLights {
 		this.lightOne = initializeLight(lightOne);
 		this.lightTwo = initializeLight(lightTwo);
 		this.state = 'red';
+	}
+	getState() {
+		return this.state;
 	}
 	clearAll() {
 		for (var color in this.lightOne) this.lightOne[color].style.background = dark;
@@ -72,9 +74,6 @@ class StreetLights {
 			this.clearAll();
 		}, 500);
 	}
-	getState() {
-		return this.state;
-	}
 }
 
 // define intersection class
@@ -90,6 +89,7 @@ class Intersection {
 		this.inTransition = false;
 		this.alarm = null;	
 	}
+	// one function to handle green-lights:
 	goStraight(streetOne, streetTwo) {
 		if (streetOne.getState() !== 'red') {
 			streetOne.transition();
@@ -118,6 +118,7 @@ class Intersection {
 			this.goStraight(this.streetOne, this.streetTwo);
 		}
 	}
+	// one function to handle left-turn lights:
 	goLeft(streetOne, streetTwo) {
 		console.log('left');
 		if (streetTwo.getState() !== 'red') {
@@ -147,6 +148,7 @@ class Intersection {
 			this.goLeft(this.streetTwo, this.streetOne);
 		}
 	}
+	// handle emergency behavior where there is a mechanical problem in the system:
 	emergency() {
 		if (!this.alarm && !this.inTransition) {
 			this.inTransition = true;
@@ -161,14 +163,18 @@ class Intersection {
 			this.inTransition = false;
 			clearInterval(this.alarm);
 			this.alarm = null;
-			this.streetOne.startTraffic();
+			this.streetOne.stopTraffic();
 			this.streetTwo.stopTraffic();
+			setTimeout(() => {
+				this.streetOne.startTraffic();
+				this.streetTwo.stopTraffic();
+			}, 750);
 			document.getElementById('crash-btn').innerHTML = 'Crash car into light post'
 		}
 	}
 }
 
-// create instances of street lights and intersections
+// create instances of street lights and intersection
 var streetOne = new StreetLights(c_north, c_south);
 var streetTwo = new StreetLights(s_east, s_west);
 var block = new Intersection(streetOne, streetTwo);
