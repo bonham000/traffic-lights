@@ -46,17 +46,21 @@ body {
 .about-content {
 	padding-top: 125px;
 	font-family: sans-serif;
-	font-size: 28px;
+	font-size: 34px;
+	width: 750px;
+	margin: auto;
 	color: #DEE5E5;
 }
 
 a, a:visited {
-	color: white;
+	font-size: 65px;
+	color: #DEE5E5;
 	text-decoration: none;
+	margin: 0;
 }
 
 a:hover {
-	text-decoration: underline;
+	color: white;
 }
 
 #crash-btn {
