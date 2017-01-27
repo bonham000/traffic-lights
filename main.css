@@ -1,4 +1,104 @@
 body {
-	background: rgb(50,50,50);
+	background: rgb(50,100,200);
 	color: white;
+	min-width: 1100px;
+	padding-top: 10px;
 }
+
+.app {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+#info {
+	position: absolute;
+	top: -5px;
+	left: 6px;
+	z-index: 2;
+	font-size: 12px;
+	color: rgb(225,225,225);
+}
+#info:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.half {
+	width: 550px;
+}
+
+.street-sign {
+	width: 550px;
+	text-align: center;
+}
+
+h1 {
+	background: rgb(0,117,75);
+	padding: 15px;
+	width: 300px;
+	margin: auto;
+	color: white;
+	border: 3px solid white;
+	border-radius: 6px;
+	font-family: sans-serif;
+}
+
+.light-container {
+	margin: 20px auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.light {
+	width: 160px;
+	height: 450px;
+	border: 35px solid rgb(40,40,40);
+	border-radius: 15px;
+	background: rgb(250, 190,10);
+}
+
+.circle {
+	width: 125px;
+	height: 125px;
+	margin: 8px auto;
+	border-radius: 50%;
+	border: 7px solid rgb(50,50,50);
+}
+
+.red {
+	background: red;
+}
+.yellow {
+	background: yellow;
+}
+.green {
+	background: rgb(14,208,103);
+}
+
+.controls {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.btn-container {
+	width: 215px;
+}
+
+button {
+	width: 215px;
+	margin: 5px auto;
+	font-size: 20px;
+	padding: 8px;
+	border-radius: 2px;
+	border: none;
+	background: #FFD293;
+}
+
+button:hover {
+	cursor: pointer;
+	background: #FFE593;
+}
+
