@@ -120,7 +120,6 @@ class Intersection {
 	}
 	// one function to handle left-turn lights:
 	goLeft(streetOne, streetTwo) {
-		console.log('left');
 		if (streetTwo.getState() !== 'red') {
 			streetTwo.transition();
 			setTimeout(() => {
@@ -159,7 +158,7 @@ class Intersection {
 				this.streetTwo.alarm();
 			}, 1000);
 			document.getElementById('crash-btn').innerHTML = 'Use magic to fix lights';
-		} else {
+		} else if (this.alarm) {
 			this.inTransition = false;
 			clearInterval(this.alarm);
 			this.alarm = null;
@@ -168,7 +167,7 @@ class Intersection {
 			setTimeout(() => {
 				this.streetOne.startTraffic();
 				this.streetTwo.stopTraffic();
-			}, 750);
+			}, 1005);
 			document.getElementById('crash-btn').innerHTML = 'Crash car into light post'
 		}
 	}
