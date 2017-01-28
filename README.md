@@ -1,1 +1,1 @@
-**This page simulates traffic light logic in a two-way intersection using JavaScript.**
+**This page simulates traffic light logic in a four-way intersection using JavaScript.**
