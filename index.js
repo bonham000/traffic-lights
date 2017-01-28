@@ -167,7 +167,7 @@ class Intersection {
 				this.streetOne.alarm();
 				this.streetTwo.alarm();
 			}, 1000);
-			document.getElementById('crash-btn').innerHTML = 'Use magic to fix lights';
+			document.getElementById('crash-btn').innerHTML = '<i class="em em-star2"></i> Use magic to fix lights <i class="em em-star2"></i>';
 		} else if (this.alarm) {
 			this.inTransition = false;
 			clearInterval(this.alarm);
@@ -178,7 +178,7 @@ class Intersection {
 				this.streetOne.startTraffic();
 				this.streetTwo.stopTraffic();
 			}, 1005);
-			document.getElementById('crash-btn').innerHTML = 'Crash car into light post'
+			document.getElementById('crash-btn').innerHTML = 'Crash car into light post <i class="em em-vertical_traffic_light em-light"></i>'
 		}
 	}
 }

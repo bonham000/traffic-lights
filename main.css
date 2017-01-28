@@ -27,6 +27,11 @@ body {
 	transform: rotateY(180deg);
 }
 
+.em-light {
+	margin-left: 0px;
+	font-size: 15px;
+}
+
 #info:hover {
 	color: white;
 	cursor: pointer;
